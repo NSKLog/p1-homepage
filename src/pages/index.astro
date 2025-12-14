@@ -3,12 +3,33 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 ---
 
 <BaseLayout title="NSK">
-	<h1>NSK</h1>
-	<p>개발 기록과 실험을 남기는 공간</p>
+	<section>
+		<h1>NSK</h1>
+		<p>개발 기록과 실험을 남기는 공간</p>
+	</section>
 
-	<h2>Latest Dev Log</h2>
-	<p>(빌드 타임 집계 예정)</p>
+	<section>
+		<h2>Latest Dev Log</h2>
+		<div class="card-list">
+			<div class="card">
+				<h3>첫 번째 개발 로그</h3>
+				<p>마크다운으로 작성된 첫 번째 글입니다. 곧 자동으로 연결됩니다</p>
+			</div>
 
-	<h2>Featured Lab</h2>
-	<p>(대표 프로젝트 영역)</p>
+			<div class="card">
+				<h3>홈페이지 리뉴얼 프로젝트</h3>
+				<p>Astro와 Vercel을 사용하여 나만의 공간을 만드는 과정</p>
+			</div>
+		</div>
+	</section>
+
+	<section>
+		<h2>Recent Experiments</h2>
+		<div class="card-list">
+			<div class="card">
+				<h3>Project: NSK Homepage</h3>
+				<p>최소한의 디자인, 최대한의 가독성을 목표로 하는 프로젝트</p>
+			</div>
+		</div>
+	</section>
 </BaseLayout>

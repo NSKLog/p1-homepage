@@ -10,6 +10,8 @@ const {
     title = "NSK",
     description = "개발 기록과 프로젝트 아카이브",
 } = Astro.props as Props;
+
+const currentPath = Astro.url.pathname;
 ---
 
 <!DOCTYPE html>
@@ -24,10 +26,10 @@ const {
   <body>
     <header class="site-header">
         <nav class="nav">
-            <a href="/">Home</a>
-            <a href="/devlog">Dev Log</a>
-            <a href="/lab">Lab</a>
-            <a href="/about">About</a>
+            <a href="/" class={currentPath === "/" ? "active" : ""}>Home</a>
+            <a href="/devlog" class={currentPath.startsWith("/devlog") ? "active" : ""}>Dev Log</a>
+            <a href="/lab" class={currentPath.startsWith("/lab") ? "active" : ""}>Lab</a>
+            <a href="/about" class={currentPath === "/about" ? "active" : ""}>About</a>
         </nav>
     </header>
 
