@@ -1,0 +1,42 @@
+---
+import "../styles/global.css";
+
+type Props = {
+  title?: string;
+  description?: string;
+}
+
+const {
+    title = "NSK",
+    description = "개발 기록과 프로젝트 아카이브",
+} = Astro.props as Props;
+---
+
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+  </head>
+
+  <body>
+    <header class="site-header">
+        <nav class="nav">
+            <a href="/">Home</a>
+            <a href="/devlog">Dev Log</a>
+            <a href="/lab">Lab</a>
+            <a href="/about">About</a>
+        </nav>
+    </header>
+
+    <main class="content">
+        <slot />
+    </main>
+
+    <footer class="site-footer">
+        <p>&copy; {new Date().getFullYear()} NSK. All rights reserved.</p>
+    </footer>
+  </body>
+</html>
