@@ -1,16 +1,14 @@
 ---
-
+import BaseLayout from "../layouts/BaseLayout.astro";
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<BaseLayout title="NSK">
+	<h1>NSK</h1>
+	<p>개발 기록과 실험을 남기는 공간.</p>
+
+	<h2>Latest Dev Log</h2>
+	<p>(빌드 타임 집계 예정)</p>
+
+	<h2>Featured Lab</h2>
+	<p>(대표 프로젝트 영역)</p>
+</BaseLayout>
