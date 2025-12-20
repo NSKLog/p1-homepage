@@ -22,3 +22,7 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
+
+# Devlog content (pulled at build time from private repo)
+src/content/devlog/
+src/content/devlog/**
