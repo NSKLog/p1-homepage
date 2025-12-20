@@ -1,8 +1,49 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getCollection } from "astro:content";
+
+const posts = await getCollection("devlog");
+
+// 최신 글이 위로 오도록 정렬
+posts.sort((a, b) => {
+  const da = new Date(a.data.date ?? 0).getTime();
+  const db = new Date(b.data.date ?? 0).getTime();
+  return db - da;
+});
+
+const fmt = (d: unknown) => {
+  if (!d) return "";
+  const date = new Date(String(d));
+  if (Number.isNaN(date.getTime())) return "";
+  return date.toISOString().slice(0, 10); // YYYY-MM-DD
+};
 ---
 
 <BaseLayout title="Dev Log">
-  <h1>Dev Log</h1>
-  <p>개발하면서 남기는 기록들</p>
+  <main class="content">
+    <header>
+      <h1>Dev Log</h1>
+      <p>개발하면서 남기는 기록들</p>
+    </header>
+
+    <section class="card-list" aria-label="Dev Log 목록">
+      {posts.map((post) => (
+        <article class="card">
+          <h3>
+            <a href={`/devlog/${post.slug}/`}>{post.data.title}</a>
+          </h3>
+
+          {post.data.description && (
+            <p>{post.data.description}</p>
+          )}
+
+          {post.data.date && (
+            <p style="margin-top:0.75rem; color:#777; font-size:0.9rem;">
+              {fmt(post.data.date)}
+            </p>
+          )}
+        </article>
+      ))}
+    </section>
+  </main>
 </BaseLayout>
