@@ -5,8 +5,9 @@ const devlog = defineCollection({
   type: "content",
   schema: z.object({
     title: z.string(),
+    tags: z.array(z.string()).optional(),
     description: z.string().optional(),
-    date: z.union([z.string(), z.date()]).optional(),
+    date: z.coerce.date().optional(),
   }),
 });
 
