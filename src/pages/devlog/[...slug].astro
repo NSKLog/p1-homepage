@@ -1,0 +1,63 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getCollection } from "astro:content";
+
+export async function getStaticPaths() {
+  const posts = await getCollection("devlog");
+  return posts.map((post) => ({
+    params: { slug: post.slug },
+  }));
+}
+
+// [...slug]는 경우에 따라 배열로 올 수 있어서 안전하게 처리
+const param = Astro.params.slug;
+const slug = Array.isArray(param) ? param.join("/") : param;
+
+const posts = await getCollection("devlog");
+const post = posts.find((p) => p.slug === slug);
+
+if (!post) {
+  return new Response("Not found", { status: 404 });
+}
+
+const fmt = (d: unknown) => {
+  if (!d) return "";
+  const date = new Date(String(d));
+  if (Number.isNaN(date.getTime())) return "";
+  return date.toISOString().slice(0, 10);
+};
+
+const { Content } = await post.render();
+---
+
+<BaseLayout title={post.data.title}>
+    <main class="content">
+        <header style="margin-bottom: 1.5rem;">
+            <nav class="devlog-topnav" aria-label="Dev Log navigation">
+                <a class="devlog-back" href="/devlog/">← Dev Log 목록</a>
+            </nav>
+
+    <h1 style="margin: 0 0 0.5rem;">{post.data.title}</h1>
+
+    {post.data.date && (
+        <p style="margin: 0; color:#777; font-size:0.95rem;">
+            {fmt(post.data.date)}
+        </p>
+  )}
+
+  {post.data.description && (
+    <p style="margin: 0.75rem 0 0; color:#555;">
+      {post.data.description}
+    </p>
+  )}
+</header>
+
+
+    <article>
+      <Content />
+    </article>
+
+    <hr style="margin: 3rem 0; border:0; border-top:1px solid #eee;" />
+
+  </main>
+</BaseLayout>
