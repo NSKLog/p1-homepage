@@ -22,7 +22,7 @@ if (!post) {
 
 const fmt = (d: unknown) => {
   if (!d) return "";
-  const date = new Date(String(d));
+  const date = d instanceof Date ? d : new Date(String(d));
   if (Number.isNaN(date.getTime())) return "";
   return date.toISOString().slice(0, 10);
 };
@@ -33,31 +33,42 @@ const { Content } = await post.render();
 <BaseLayout title={post.data.title}>
     <main class="content">
         <header style="margin-bottom: 1.5rem;">
-            <nav class="devlog-topnav" aria-label="Dev Log navigation">
-                <a class="devlog-back" href="/devlog/">← Dev Log 목록</a>
-            </nav>
+          <nav class="devlog-topnav" aria-label="Dev Log navigation">
+            <a class="devlog-back" href="/devlog/">← Dev Log 목록</a>
+          </nav>
 
-    <h1 style="margin: 0 0 0.5rem;">{post.data.title}</h1>
+          <h1 style="margin: 0 0 0.5rem;">{post.data.title}</h1>
 
-    {post.data.date && (
-        <p style="margin: 0; color:#777; font-size:0.95rem;">
-            {fmt(post.data.date)}
-        </p>
-  )}
+          {(post.data.date || (post.data.tags && post.data.tags.length > 0)) && (
+            <div class="post-meta">
+              {post.data.date && (
+                <span class="post-date">{fmt(post.data.date)}</span>
+              )}
 
-  {post.data.description && (
-    <p style="margin: 0.75rem 0 0; color:#555;">
-      {post.data.description}
-    </p>
-  )}
-</header>
+              {post.data.tags && post.data.tags.length > 0 && (
+                <ul class="post-tags" aria-label="태그">
+                  {post.data.tags.map((tag) => (
+                    <li class="post-tag">#{tag}</li>
+                  ))}
+                </ul>
+              )}
+            </div>
+          )}
 
 
-    <article>
-      <Content />
-    </article>
+          {post.data.description && (
+            <p style="margin: 0.75rem 0 0; color:#555;">
+              {post.data.description}
+            </p>
+          )}
+        </header>
 
-    <hr style="margin: 3rem 0; border:0; border-top:1px solid #eee;" />
 
-  </main>
+        <article>
+          <Content />
+        </article>
+
+        <hr style="margin: 3rem 0; border:0; border-top:1px solid #eee;" />
+
+    </main>
 </BaseLayout>

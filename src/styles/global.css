@@ -116,29 +116,30 @@ a { color: #0066cc; }
 }
 
 .post-meta {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  margin-top: 0.75rem;
-  color: #777;
-  font-size: 0.9rem;
+    display: flex;
+    align-items: baseline;
+    gap: 0.75rem;
+    margin-top: 0.75rem;
+    color: #777;
+    font-size: 0.9rem;
+    flex-wrap: wrap;
 }
 
 .post-date { white-space: nowrap; }
 
 .post-tags {
-  display: flex;
-  gap: 0.4rem;
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  flex-wrap: wrap;
+    display: flex;
+    gap: 0.4rem;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    flex-wrap: wrap;
 }
 
 .post-tag {
-  background: #f3f4f6;
-  color: #555;
-  border-radius: 999px;
-  padding: 0.12rem 0.5rem;
-  font-size: 0.75rem;
+    background: #f3f4f6;
+    color: #555;
+    border-radius: 999px;
+    padding: 0.12rem 0.5rem;
+    font-size: 0.75rem;
 }
