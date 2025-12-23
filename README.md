@@ -1,43 +1,18 @@
-# Astro Starter Kit: Minimal
+# NSKLog P1 Homepage
 
-```sh
-npm create astro@latest -- --template minimal
-```
+## Dev Log 운영 정책 (중요)
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+이 프로젝트의 Dev Log는 **Public Repo(NSKLog/p1-homepage)에 포함**하여 운영한다.
 
-## 🚀 Project Structure
+- Dev Log 위치: `src/content/devlog/*.md`
+- 배포 흐름: GitHub `p1-homepage(main)` → Vercel 자동 배포 → `www.nsklog.dev/devlog`
+- 원칙: Dev Log는 사이트에 공개 노출되는 아카이브이므로 public repo 포함을 기본으로 한다.
 
-Inside of your Astro project, you'll see the following folders and files:
+### 과거 방식(중단)
+과거에는 Dev Log를 Private Repo(`p1-homepage-content`)에서 관리하고,
+빌드 전(prebuild)에 private repo를 clone하여 주입하는 방식을 사용했다.
 
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
-```
+현재는 운영 복잡도 및 인증/배포 장애 이슈로 인해 해당 방식은 중단했다.
+(추후 필요 시 재도입 검토 가능)
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
-
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
-
-Any static assets, like images, can be placed in the `public/` directory.
-
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+---
